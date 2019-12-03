@@ -9,6 +9,15 @@ router.get('/', (req,res) => {
     return res.render('employees');
 });
 
+//employee list
+router.route('/employeeList').get((req,res) => {
+    User.find()                
+        .then(user => {
+            return res.render('employeeList', {'Employee': user})
+        })
+        .catch(err => res.status(400).send('Error: ' + err));
+});
+
 router.route('/submit-user').post(async (req,res) => {
     
     const Firstname         = req.body.Firstname;
@@ -19,8 +28,6 @@ router.route('/submit-user').post(async (req,res) => {
     const Job_Title         = req.body.Job_Title;
     const Image_Path        = req.body.Image_Path;
     const Fingerprint_Id    = req.body.Fingerprint_Id;
-
-
 
     const newUser = new User({
         Firstname       : Firstname,

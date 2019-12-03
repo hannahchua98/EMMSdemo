@@ -1,0 +1,21 @@
+extends base.pug
+
+block content
+    table
+        tr  
+            th Employee Name
+            th Gender
+            th Payroll Group
+            th Department
+            th Job Title
+            th Image Path
+            th Fingerprint ID
+        tr
+        each emp in Employee
+            td #{emp.Firstname} #{emp.Lastname}
+            td #{emp.Gender}
+            td #{emp.Payroll_Group}
+            td #{emp.Department}
+            td #{emp.Job_Title}
+            td #{emp.Image_Path}
+            td #{emp.Fingerprint_Id}

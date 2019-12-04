@@ -2,8 +2,6 @@ const express   = require('express');
 const User      = require('../model/employee');
 const router    = express.Router();
 
-const app = express();
-
 
 router.get('/', (req,res) => {
     return res.render('employees');
@@ -42,11 +40,14 @@ router.route('/submit-user').post(async (req,res) => {
     
     console.log(newUser);
     newUser.save()
-        .then(() => console.log(`User ${newUser.Firstname} Added!`))
+        .then(() => {
+            console.log(`User ${newUser.Firstname} Added!`)
+            return res.render('employees');
+        })
         .catch((err) => {
             console.error(err);
         })
-    return res.render('employees');
+    
 });
 
 module.exports = router;

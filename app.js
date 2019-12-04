@@ -15,8 +15,11 @@ app.use(bodPar.json());                         // parse application to json
 
 //routing -----
 //get req
-const formRoute = require('./routes/form');
+const formRoute     = require('./routes/form');
+const empLogsRoute  = require('./routes/employee-logs');
+
 app.use('/', formRoute);
+app.use('/employee-logs', empLogsRoute);
 
 
 /*
@@ -36,15 +39,16 @@ app.get('/submit-get', (req,res) =>{
 */
 //db connection
 const dbURI = process.env.CONN;
-const connection = mongoose.connect(dbURI, 
+mongoose.connect(dbURI, 
     {useNewUrlParser: true, 
     useCreateIndex: true, 
     useUnifiedTopology: true}
 );
 
-connection
-    .then(console.log('succesfully connected to db'))
-    .catch((err) => console.error(err))
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log('mongodb database connection established succesfully');
+})
 
 //listening to server
 app.listen(port, () => {

@@ -11,4 +11,5 @@ const userSchema = mongoose.Schema({
     Fingerprint_Id  :{ type: String, required: true }
 });
 
+
 module.exports = mongoose.model('User', userSchema);

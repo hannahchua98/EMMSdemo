@@ -8,10 +8,10 @@ router.route('/').get((req,res) => {
 
 router.route('/add-logs').post( async (req,res) => {
     console.log('hello');
-    const Employee_Id = req.body.Employee_Id;
+    const Emotion = req.body.Emotion;
 
     const newLog = new EmployeeLogs({
-        Employee_Id: Employee_Id
+        Emotion: Emotion
     })
     console.log(newLog);
     newLog.save()

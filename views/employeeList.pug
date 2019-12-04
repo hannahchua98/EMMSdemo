@@ -10,8 +10,9 @@ block content
             th Job Title
             th Image Path
             th Fingerprint ID
+    table 
+        each emp in Employee   
         tr
-        each emp in Employee
             td #{emp.Firstname} #{emp.Lastname}
             td #{emp.Gender}
             td #{emp.Payroll_Group}
